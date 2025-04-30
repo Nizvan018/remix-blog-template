@@ -44,7 +44,7 @@ const CreateForm = () => {
                         className="border border-white/20 rounded-md p-2 outline-none bg-transparent transition focus:border-white"
                     />
                     {errors.title?.message && (
-                        <span className="text-xm font-semibold text-rose-500">{errors.title.message}</span>
+                        <span className="text-xs font-semibold text-rose-500">{errors.title.message}</span>
                     )}
                 </div>
 
@@ -62,7 +62,7 @@ const CreateForm = () => {
                         className="border border-white/20 rounded-md p-2 outline-none bg-transparent transition focus:border-white resize-none"
                     />
                     {errors.body?.message && (
-                        <span className="text-xm font-semibold text-rose-500">{errors.body.message}</span>
+                        <span className="text-xs font-semibold text-rose-500">{errors.body.message}</span>
                     )}
                 </div>
 

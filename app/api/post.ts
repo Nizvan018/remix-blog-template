@@ -1,5 +1,6 @@
 import { Post } from "~/generated/prisma";
 import prisma from "~/lib/prisma.server";
+import { CreatePostFromType } from "~/schemes/createPostForm.schema";
 
 /**
  * GET all posts
@@ -40,19 +41,12 @@ export const getPostById = async (id: string | undefined): Promise<Post | null> 
  * @param {FormData} formData
  * @returns {Promise<Response>} created post
  */
-export const createPost = async (formData: FormData): Promise<Response> => {
+export const createPost = async (data: CreatePostFromType): Promise<Response> => {
     try {
-        const title = formData.get("title");
-        const body = formData.get("body");
-
-        if (typeof title !== "string" || typeof body !== "string") {
-            return new Response("Invalid form data", { status: 400 });
-        }
-
         const post = await prisma.post.create({
             data: {
-                title: title,
-                body: body
+                title: data.title,
+                body: data.body
             }
         });
 

@@ -13,7 +13,7 @@ const Navbar = () => {
                         <Link to="/" className="transition hover:text-blue-500">Home</Link>
                     </li>
                     <li>
-                        <Link to="/posts/create" className="transition hover:text-blue-500">Create Post</Link>
+                        <Link to="/posts/create/form" className="transition hover:text-blue-500">Create Post</Link>
                     </li>
                     <li>
                         <Link to="/about" className="transition hover:text-blue-500">About</Link>
