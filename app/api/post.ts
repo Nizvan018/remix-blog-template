@@ -38,7 +38,7 @@ export const getPostById = async (id: string | undefined): Promise<Post | null> 
 /**
  * POST one post
  * 
- * @param {FormData} formData
+ * @param {CreatePostFromType} data
  * @returns {Promise<Response>} created post
  */
 export const createPost = async (data: CreatePostFromType): Promise<Response> => {
@@ -53,5 +53,25 @@ export const createPost = async (data: CreatePostFromType): Promise<Response> =>
         return new Response(JSON.stringify(post), { status: 201 });
     } catch (error) {
         return new Response("An unexpected error has ocurred", { status: 500 });
+    }
+}
+
+/**
+ * DELETE one post by id
+ * 
+ * @param {string} id
+ * @returns {Promise<Response>} deleted post
+ */
+export const deletePostById = async (id: string): Promise<Response> => {
+    try {
+        const post = await prisma.post.delete({
+            where: {
+                id: id
+            }
+        });
+
+        return new Response(JSON.stringify(post), { status: 200 });
+    } catch (error) {
+        return new Response("En unexpected error has ocurred", { status: 500 });
     }
 }

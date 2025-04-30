@@ -79,7 +79,7 @@ const CreateForm = () => {
                 <div className="flex justify-end w-full mt-8">
                     <button
                         type="submit"
-                        className="flex items-center gap-2 w-fit text-black font-semibold rounded-md py-2 px-4 bg-white transition hover:bg-white/90"
+                        className="flex items-center gap-2 w-fit text-black font-semibold rounded-md py-3 px-4 bg-white transition hover:bg-white/90"
                     >
                         <span>Create post</span>
                         {isSubmitting && (
