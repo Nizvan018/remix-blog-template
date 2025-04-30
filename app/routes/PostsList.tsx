@@ -1,5 +1,5 @@
 import { Link } from "@remix-run/react";
-import type { Post } from "~/api/post";
+import { Post } from "~/generated/prisma";
 
 interface Props {
     posts: Post[];

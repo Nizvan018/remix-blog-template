@@ -8,6 +8,7 @@ import {
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import Navbar from "~/components/Navbar";
 import Footer from "./components/Footer";
+import { Toaster } from "sonner";
 
 import "./tailwind.css";
 
@@ -44,6 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Navbar />
         {children}
         <Footer />
+        <Toaster theme="dark" />
         <ScrollRestoration />
         <Scripts />
       </body>
