@@ -28,8 +28,6 @@ async function login(email: string, password: string): Promise<UserWithoutPasswo
         }
     });
 
-    console.log(email);
-
     if (!user) {
         throw new Error("The user doesn't exist");
     }
