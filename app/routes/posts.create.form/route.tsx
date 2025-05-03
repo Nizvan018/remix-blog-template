@@ -2,8 +2,15 @@ import { Form, redirect, useActionData, useNavigation } from "@remix-run/react";
 import { getValidatedFormData, useRemixForm } from "remix-hook-form";
 import { Loader } from "lucide-react";
 import { createPost } from "~/api/post";
-import { ActionFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { type CreatePostFromType, createPostFromResolver } from "~/schemes/createPostForm.schema";
+import { authenticate } from "~/services/auth.server";
+
+export async function loader({ request }: LoaderFunctionArgs) {
+    await authenticate(request, "/posts/create/form");
+
+    return null;
+}
 
 export async function action({ request }: ActionFunctionArgs) {
     const { errors, data, receivedValues: defaultValues } = await getValidatedFormData<CreatePostFromType>(request, createPostFromResolver);

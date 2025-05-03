@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import { Authenticator } from "remix-auth";
 import { FormStrategy } from "remix-auth-form";
 import { User } from "~/generated/prisma";
@@ -61,3 +61,22 @@ authenticator.use(
     }),
     "user-pass"
 );
+
+export async function authenticate(request: Request, returnTo?: string) {
+    const session = await sessionStorage.getSession(request.headers.get("cookie"));
+    const user = session.get("user");
+
+    if (user) {
+        return user;
+    }
+
+    if (returnTo) {
+        session.set("returnTo", returnTo);
+    }
+
+    throw redirect("/login", {
+        headers: {
+            "Set-Cookie": await sessionStorage.commitSession(session)
+        }
+    });
+}

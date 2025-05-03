@@ -3,8 +3,12 @@ import { getPosts } from "~/api/post";
 import Header from "./Header";
 import PostsList from "./PostsList";
 import { Post } from "~/generated/prisma";
+import { authenticate } from "~/services/auth.server";
+import { LoaderFunctionArgs } from "@remix-run/node";
 
-export const loader = async () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+	await authenticate(request, "/");
+
 	try {
 		const posts = await getPosts();
 

@@ -44,7 +44,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-	const { isLoggedIn } = useLoaderData<typeof loader>();
+	const data = useLoaderData<typeof loader>();
 
 	return (
 		<html lang="en">
@@ -53,10 +53,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body className="flex flex-col items-center w-full">
-				<Navbar isLoggedIn={isLoggedIn} />
-
+				<Navbar isLoggedIn={data.isLoggedIn} />
 				{children}
-
 				<Footer />
 				<Toaster theme="dark" />
 				<ScrollRestoration />
